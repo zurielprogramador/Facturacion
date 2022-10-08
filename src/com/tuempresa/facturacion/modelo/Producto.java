@@ -29,6 +29,13 @@ public class Producto {
 	@Column(length=32)
 	String fotos;
 	
-	@TextArea
+	@Stereotype("MEMO")
 	String observaciones;
+	
+	@ManyToOne(fetch=FetchType.LAZY)
+	@DescriptionsList
+	Autor autor;
+	
+	
+	
 }
