@@ -39,7 +39,7 @@ LocalDate fecha;
 @ReferenceView("Simple")
 Cliente cliente;
 @ElementCollection
-@ListProperties("producto.numero,producto.descripcion,cantidad")
+@ListProperties("producto.numero,producto.descripcion,cantidad, precioPorUnidad,importe")
 Collection<Detalle>detalles;
 
 

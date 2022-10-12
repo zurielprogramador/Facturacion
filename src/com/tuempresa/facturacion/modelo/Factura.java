@@ -21,4 +21,8 @@ members=
 public class Factura extends DocumentoComercial{
     @OneToMany(mappedBy = "factura")
 	Collection<Pedido>pedidos;
+    
+    @ManyToOne
+    @ReferenceView("SinClienteNiPedidos")
+    Factura factura;
 }
