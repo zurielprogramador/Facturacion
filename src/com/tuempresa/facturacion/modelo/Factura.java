@@ -4,8 +4,9 @@ import java.util.*;
 
 import javax.persistence.*;
 
-import lombok.*;
+import org.openxava.annotations.*;
 
+import lombok.*;
 @Entity @Getter @Setter
 public class Factura extends DocumentoComercial{
     @OneToMany(mappedBy = "factura")
