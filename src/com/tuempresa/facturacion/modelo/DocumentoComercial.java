@@ -15,12 +15,9 @@ import lombok.*;
 @Entity @Getter @Setter
 @View(members= 
         "anyo,numero,fecha;"+
-        "datos{"+
-        		
         "cliente;"+
 		"detalles;"+ 
-        "observaciones"+
-		"}"
+        "observaciones"
 		)                                                        
 abstract public class DocumentoComercial extends Identificable{
 
@@ -39,7 +36,7 @@ LocalDate fecha;
 @ReferenceView("Simple")
 Cliente cliente;
 @ElementCollection
-@ListProperties("producto.numero,producto.descripcion,cantidad")
+@ListProperties("producto.numero,producto.descripcion,cantidad, precioPorUnidad,importe")
 Collection<Detalle>detalles;
 
 
