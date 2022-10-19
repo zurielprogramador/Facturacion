@@ -15,8 +15,9 @@ import org.openxava.web.WebEditors;
 import org.openxava.model.meta.MetaProperty;
 import org.openxava.view.View;
 import org.openxava.util.XavaPreferences;
+import org.openxava.web.Collections;
 
-public final class collectionTotals_jsp extends org.apache.jasper.runtime.HttpJspBase
+public final class collectionTotal_jsp extends org.apache.jasper.runtime.HttpJspBase
     implements org.apache.jasper.runtime.JspSourceDependent,
                  org.apache.jasper.runtime.JspSourceImports {
 
@@ -47,9 +48,11 @@ public final class collectionTotals_jsp extends org.apache.jasper.runtime.HttpJs
     _jspx_imports_classes.add("org.openxava.model.meta.MetaProperty");
     _jspx_imports_classes.add("org.openxava.util.XavaPreferences");
     _jspx_imports_classes.add("org.openxava.view.View");
+    _jspx_imports_classes.add("org.openxava.web.Collections");
     _jspx_imports_classes.add("org.openxava.web.WebEditors");
   }
 
+  private org.apache.jasper.runtime.TagHandlerPool _005fjspx_005ftagPool_005fxava_005feditor_0026_005fproperty_005fnobody;
   private org.apache.jasper.runtime.TagHandlerPool _005fjspx_005ftagPool_005fxava_005fid_0026_005fname_005fnobody;
   private org.apache.jasper.runtime.TagHandlerPool _005fjspx_005ftagPool_005fxava_005faction_0026_005fargv_005faction_005fnobody;
 
@@ -91,11 +94,13 @@ public final class collectionTotals_jsp extends org.apache.jasper.runtime.HttpJs
   }
 
   public void _jspInit() {
+    _005fjspx_005ftagPool_005fxava_005feditor_0026_005fproperty_005fnobody = org.apache.jasper.runtime.TagHandlerPool.getTagHandlerPool(getServletConfig());
     _005fjspx_005ftagPool_005fxava_005fid_0026_005fname_005fnobody = org.apache.jasper.runtime.TagHandlerPool.getTagHandlerPool(getServletConfig());
     _005fjspx_005ftagPool_005fxava_005faction_0026_005fargv_005faction_005fnobody = org.apache.jasper.runtime.TagHandlerPool.getTagHandlerPool(getServletConfig());
   }
 
   public void _jspDestroy() {
+    _005fjspx_005ftagPool_005fxava_005feditor_0026_005fproperty_005fnobody.release();
     _005fjspx_005ftagPool_005fxava_005fid_0026_005fname_005fnobody.release();
     _005fjspx_005ftagPool_005fxava_005faction_0026_005fargv_005faction_005fnobody.release();
   }
@@ -140,12 +145,13 @@ public final class collectionTotals_jsp extends org.apache.jasper.runtime.HttpJs
       out.write('\n');
       out.write('\n');
       out.write('\n');
-      out.write("\n");
-      out.write("\n");
-      out.write("\n");
-      out.write("\n");
-      out.write("\n");
       out.write(" \n");
+      out.write("\n");
+      out.write("\n");
+      out.write("\n");
+      out.write("\n");
+      out.write("\n");
+      out.write("  \n");
       out.write("\n");
       org.openxava.controller.ModuleContext context = null;
       synchronized (session) {
@@ -156,13 +162,6 @@ public final class collectionTotals_jsp extends org.apache.jasper.runtime.HttpJs
         }
       }
       out.write('\n');
-      org.openxava.web.style.Style style = null;
-      style = (org.openxava.web.style.Style) _jspx_page_context.getAttribute("style", javax.servlet.jsp.PageContext.REQUEST_SCOPE);
-      if (style == null){
-        style = new org.openxava.web.style.Style();
-        _jspx_page_context.setAttribute("style", style, javax.servlet.jsp.PageContext.REQUEST_SCOPE);
-      }
-      out.write('\n');
       org.openxava.util.Messages errors = null;
       errors = (org.openxava.util.Messages) _jspx_page_context.getAttribute("errors", javax.servlet.jsp.PageContext.REQUEST_SCOPE);
       if (errors == null){
@@ -171,68 +170,61 @@ public final class collectionTotals_jsp extends org.apache.jasper.runtime.HttpJs
       }
       out.write('\n');
       out.write('\n');
-      out.write('\n');
 
 String viewObject = request.getParameter("viewObject");
 View view = (View) context.get(request, viewObject);
 String collectionName = request.getParameter("collectionName");
-View subview = view.getSubview(collectionName);
-String idCollection = org.openxava.web.Collections.id(request, collectionName);
-String propertyPrefix = request.getParameter("propertyPrefix");
-String collectionPrefix = propertyPrefix == null?collectionName + ".":propertyPrefix + collectionName + ".";
 String collectionArgv=",collection="+collectionName; 
+View subview = view.getSubview(collectionName);
+int row = Integer.parseInt(request.getParameter("row"));
+int column = Integer.parseInt(request.getParameter("column"));
 
-boolean elementCollection = subview.isRepresentsElementCollection(); 
-int additionalTotalsCount = subview.getCollectionTotalsCount();
-for (int i=0; i<additionalTotalsCount; i++) {
-
-      out.write("\n");
-      out.write("\t<tr class=\"");
-      out.print(style.getTotalRow());
-      out.write("\">\n");
-      out.write("\t");
- if (!(subview.isRepresentsElementCollection() && !subview.isCollectionEditable())) { 
-      out.write("\n");
-      out.write("\t\t<td style=\"");
-      out.print(style.getTotalEmptyCellStyle());
-      out.write("\"/>\n");
-      out.write("\t\t");
- if (!subview.getMetaCollection().isElementCollection()) { 
-      out.write("\n");
-      out.write("\t\t<td style=\"");
-      out.print(style.getTotalEmptyCellStyle());
-      out.write("\"/>\n");
-      out.write("\t\t");
- } 
       out.write('\n');
-      out.write('	');
- } 
-      out.write('	');
       out.write('\n');
 
-java.util.Iterator it = subview.getMetaPropertiesList().iterator(); 
-for (int c = 0; it.hasNext(); c++) {
-	MetaProperty p = (MetaProperty) it.next();
-	String align =p.isNumber() && !p.hasValidValues()?"text-align: right; ":"";
-	String cellStyle = align + style.getTotalCellStyle(); 
-	
-	if (subview.hasCollectionTotal(i, c)) {
-	
-      out.write(" \t\n");
-      out.write("\t<td class=\"");
-      out.print(style.getTotalCell());
-      out.write("\" style=\"");
-      out.print(cellStyle);
-      out.write("\">\t\n");
-      out.write("\t<div id=\"");
+if (subview.isCollectionTotalEditable(row, column)) { 
+
+      out.write('\n');
+      out.write('	');
+      //  xava:editor
+      org.openxava.web.taglib.EditorTag _jspx_th_xava_005feditor_005f0 = (org.openxava.web.taglib.EditorTag) _005fjspx_005ftagPool_005fxava_005feditor_0026_005fproperty_005fnobody.get(org.openxava.web.taglib.EditorTag.class);
+      boolean _jspx_th_xava_005feditor_005f0_reused = false;
+      try {
+        _jspx_th_xava_005feditor_005f0.setPageContext(_jspx_page_context);
+        _jspx_th_xava_005feditor_005f0.setParent(null);
+        // /xava/editors/collectionTotal.jsp(25,1) name = property type = null reqTime = true required = true fragment = false deferredValue = false deferredMethod = false expectedTypeName = null methodSignature = null 
+        _jspx_th_xava_005feditor_005f0.setProperty(subview.getCollectionTotalPropertyName(row, column));
+        int _jspx_eval_xava_005feditor_005f0 = _jspx_th_xava_005feditor_005f0.doStartTag();
+        if (_jspx_th_xava_005feditor_005f0.doEndTag() == javax.servlet.jsp.tagext.Tag.SKIP_PAGE) {
+          return;
+        }
+        _005fjspx_005ftagPool_005fxava_005feditor_0026_005fproperty_005fnobody.reuse(_jspx_th_xava_005feditor_005f0);
+        _jspx_th_xava_005feditor_005f0_reused = true;
+      } finally {
+        org.apache.jasper.runtime.JspRuntimeLibrary.releaseTag(_jspx_th_xava_005feditor_005f0, _jsp_getInstanceManager(), _jspx_th_xava_005feditor_005f0_reused);
+      }
+      out.write("  \t\t\t\t\n");
+ 
+} 
+else { 
+	MetaProperty p = (MetaProperty) subview.getMetaPropertiesList().get(column);
+	Object total = subview.getCollectionTotal(row, column);
+	String ftotal = WebEditors.format(request, p, total, errors, view.getViewName(), true);
+	View rootView = view.getCollectionRootOrRoot();
+	String sumProperty = collectionName + "." + p.getName() + "_SUM_";
+	if (rootView.isPropertyUsedInCalculation(sumProperty)) {
+		String script = Collections.sumPropertyScript(request, rootView, sumProperty); 
+
+      out.write("\n");
+      out.write("\t\t<input id=\"");
       //  xava:id
       org.openxava.web.taglib.IdTag _jspx_th_xava_005fid_005f0 = (org.openxava.web.taglib.IdTag) _005fjspx_005ftagPool_005fxava_005fid_0026_005fname_005fnobody.get(org.openxava.web.taglib.IdTag.class);
       boolean _jspx_th_xava_005fid_005f0_reused = false;
       try {
         _jspx_th_xava_005fid_005f0.setPageContext(_jspx_page_context);
         _jspx_th_xava_005fid_005f0.setParent(null);
-        // /xava/editors/collectionTotals.jsp(44,10) name = name type = null reqTime = true required = true fragment = false deferredValue = false deferredMethod = false expectedTypeName = null methodSignature = null 
-        _jspx_th_xava_005fid_005f0.setName("collection_total_" + i + "_" + c + "_" + collectionPrefix);
+        // /xava/editors/collectionTotal.jsp(37,13) name = name type = null reqTime = true required = true fragment = false deferredValue = false deferredMethod = false expectedTypeName = null methodSignature = null 
+        _jspx_th_xava_005fid_005f0.setName(sumProperty);
         int _jspx_eval_xava_005fid_005f0 = _jspx_th_xava_005fid_005f0.doStartTag();
         if (_jspx_th_xava_005fid_005f0.doEndTag() == javax.servlet.jsp.tagext.Tag.SKIP_PAGE) {
           return;
@@ -242,74 +234,30 @@ for (int c = 0; it.hasNext(); c++) {
       } finally {
         org.apache.jasper.runtime.JspRuntimeLibrary.releaseTag(_jspx_th_xava_005fid_005f0, _jsp_getInstanceManager(), _jspx_th_xava_005fid_005f0_reused);
       }
-      out.write("\" class=\" ");
-      //  xava:id
-      org.openxava.web.taglib.IdTag _jspx_th_xava_005fid_005f1 = (org.openxava.web.taglib.IdTag) _005fjspx_005ftagPool_005fxava_005fid_0026_005fname_005fnobody.get(org.openxava.web.taglib.IdTag.class);
-      boolean _jspx_th_xava_005fid_005f1_reused = false;
-      try {
-        _jspx_th_xava_005fid_005f1.setPageContext(_jspx_page_context);
-        _jspx_th_xava_005fid_005f1.setParent(null);
-        // /xava/editors/collectionTotals.jsp(44,101) name = name type = null reqTime = true required = true fragment = false deferredValue = false deferredMethod = false expectedTypeName = null methodSignature = null 
-        _jspx_th_xava_005fid_005f1.setName(idCollection);
-        int _jspx_eval_xava_005fid_005f1 = _jspx_th_xava_005fid_005f1.doStartTag();
-        if (_jspx_th_xava_005fid_005f1.doEndTag() == javax.servlet.jsp.tagext.Tag.SKIP_PAGE) {
-          return;
-        }
-        _005fjspx_005ftagPool_005fxava_005fid_0026_005fname_005fnobody.reuse(_jspx_th_xava_005fid_005f1);
-        _jspx_th_xava_005fid_005f1_reused = true;
-      } finally {
-        org.apache.jasper.runtime.JspRuntimeLibrary.releaseTag(_jspx_th_xava_005fid_005f1, _jsp_getInstanceManager(), _jspx_th_xava_005fid_005f1_reused);
-      }
-      out.write("_col");
-      out.print(c);
-      out.write("\" style=\"overflow: hidden; \">\n");
-      out.write("\t");
-      org.apache.jasper.runtime.JspRuntimeLibrary.include(request, response, "collectionTotal.jsp" + "?" + org.apache.jasper.runtime.JspRuntimeLibrary.URLEncode("row", request.getCharacterEncoding())+ "=" + org.apache.jasper.runtime.JspRuntimeLibrary.URLEncode(String.valueOf(i), request.getCharacterEncoding()) + "&" + org.apache.jasper.runtime.JspRuntimeLibrary.URLEncode("column", request.getCharacterEncoding())+ "=" + org.apache.jasper.runtime.JspRuntimeLibrary.URLEncode(String.valueOf(c), request.getCharacterEncoding()), out, false);
-      out.write("\n");
-      out.write("\t</div>\t\n");
-      out.write("\t</td>\n");
-      out.write("\t");
-
+      out.write("\" type=\"hidden\" value=\"");
+      out.print(ftotal);
+      out.write('"');
+      out.write(' ');
+      out.print(script);
+      out.write('/');
+      out.write('>');
+      out.write('\n');
+ 		
 	}
-	else if (i==0 && XavaPreferences.getInstance().isSummationInList() && subview.isCollectionTotalCapable(c)) { 
-	
-      out.write("\n");
-      out.write("\t<td class=\"");
-      out.print(style.getTotalCapableCell());
-      out.write("\" style=\"");
-      out.print(style.getTotalCapableCellStyle() );
-      out.write("\">\n");
-      out.write("\t\t<div class=\" ");
-      //  xava:id
-      org.openxava.web.taglib.IdTag _jspx_th_xava_005fid_005f2 = (org.openxava.web.taglib.IdTag) _005fjspx_005ftagPool_005fxava_005fid_0026_005fname_005fnobody.get(org.openxava.web.taglib.IdTag.class);
-      boolean _jspx_th_xava_005fid_005f2_reused = false;
-      try {
-        _jspx_th_xava_005fid_005f2.setPageContext(_jspx_page_context);
-        _jspx_th_xava_005fid_005f2.setParent(null);
-        // /xava/editors/collectionTotals.jsp(56,15) name = name type = null reqTime = true required = true fragment = false deferredValue = false deferredMethod = false expectedTypeName = null methodSignature = null 
-        _jspx_th_xava_005fid_005f2.setName(idCollection);
-        int _jspx_eval_xava_005fid_005f2 = _jspx_th_xava_005fid_005f2.doStartTag();
-        if (_jspx_th_xava_005fid_005f2.doEndTag() == javax.servlet.jsp.tagext.Tag.SKIP_PAGE) {
-          return;
-        }
-        _005fjspx_005ftagPool_005fxava_005fid_0026_005fname_005fnobody.reuse(_jspx_th_xava_005fid_005f2);
-        _jspx_th_xava_005fid_005f2_reused = true;
-      } finally {
-        org.apache.jasper.runtime.JspRuntimeLibrary.releaseTag(_jspx_th_xava_005fid_005f2, _jsp_getInstanceManager(), _jspx_th_xava_005fid_005f2_reused);
-      }
-      out.write("_col");
-      out.print(c);
-      out.write("\" style=\"overflow: hidden; \"> \n");
-      out.write("\t\t\t");
+	else if (!subview.isCollectionFixedTotal(column) && XavaPreferences.getInstance().isSummationInList()) {
+
+      out.write('\n');
+      out.write('	');
+      out.write('	');
       //  xava:action
       org.openxava.web.taglib.ActionTag _jspx_th_xava_005faction_005f0 = (org.openxava.web.taglib.ActionTag) _005fjspx_005ftagPool_005fxava_005faction_0026_005fargv_005faction_005fnobody.get(org.openxava.web.taglib.ActionTag.class);
       boolean _jspx_th_xava_005faction_005f0_reused = false;
       try {
         _jspx_th_xava_005faction_005f0.setPageContext(_jspx_page_context);
         _jspx_th_xava_005faction_005f0.setParent(null);
-        // /xava/editors/collectionTotals.jsp(57,3) name = action type = null reqTime = true required = true fragment = false deferredValue = false deferredMethod = false expectedTypeName = null methodSignature = null 
-        _jspx_th_xava_005faction_005f0.setAction("CollectionTotals.sumColumn");
-        // /xava/editors/collectionTotals.jsp(57,3) name = argv type = null reqTime = true required = false fragment = false deferredValue = false deferredMethod = false expectedTypeName = null methodSignature = null 
+        // /xava/editors/collectionTotal.jsp(42,2) name = action type = null reqTime = true required = true fragment = false deferredValue = false deferredMethod = false expectedTypeName = null methodSignature = null 
+        _jspx_th_xava_005faction_005f0.setAction("CollectionTotals.removeColumnSum");
+        // /xava/editors/collectionTotal.jsp(42,2) name = argv type = null reqTime = true required = false fragment = false deferredValue = false deferredMethod = false expectedTypeName = null methodSignature = null 
         _jspx_th_xava_005faction_005f0.setArgv("property="+p.getName() + collectionArgv);
         int _jspx_eval_xava_005faction_005f0 = _jspx_th_xava_005faction_005f0.doStartTag();
         if (_jspx_th_xava_005faction_005f0.doEndTag() == javax.servlet.jsp.tagext.Tag.SKIP_PAGE) {
@@ -320,51 +268,18 @@ for (int c = 0; it.hasNext(); c++) {
       } finally {
         org.apache.jasper.runtime.JspRuntimeLibrary.releaseTag(_jspx_th_xava_005faction_005f0, _jsp_getInstanceManager(), _jspx_th_xava_005faction_005f0_reused);
       }
-      out.write("&nbsp;\n");
-      out.write("\t\t</div>\t\n");
-      out.write("\t</td>\n");
-      out.write("\t");
+      out.write('\n');
+ 
+	} 
 
-	}
-	else if (subview.hasCollectionTotal(i, c + 1) && (i > 0 || !subview.hasCollectionSum(c + 1))) { 	
-	
       out.write("\n");
-      out.write("\t<td class=\"");
-      out.print(style.getTotalLabelCell());
-      out.write("\" style=\"");
-      out.print(style.getTotalLabelCellStyle());
-      out.write("\">\n");
-      out.write("\t\t");
-      out.print(subview.getCollectionTotalLabel(i, c + 1));
+      out.write("\t<nobr>\n");
+      out.write("\t");
+      out.print(ftotal);
       out.write("&nbsp;\n");
-      out.write("\t</td>\n");
-      out.write("\t");
-	
-	}
-	else {
-	
-      out.write("\t \n");
-      out.write("\t<td style=\"");
-      out.print(style.getTotalEmptyCellStyle());
-      out.write("\"/>\n");
-      out.write("\t");
-		
-	}	
-	if (elementCollection && subview.isLastSearchKey(p.getName())) { 
-	
-      out.write("\n");
-      out.write("\t<td style=\"");
-      out.print(style.getTotalEmptyCellStyle());
-      out.write("\"/>\t\n");
-      out.write("\t");
-	
-	}
+      out.write("\t</nobr>\n");
+
 }
-
-      out.write("\n");
-      out.write("</tr>\n");
-
-} // for additionalTotalsCount 
 
       out.write('\n');
     } catch (java.lang.Throwable t) {

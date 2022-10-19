@@ -8,18 +8,18 @@ import lombok.*;
 
 @Entity @Getter @Setter
 @View(extendsView="super.DEFAULT",
-members="factura{ factura }"
+     members="factura { factura }"
 )
-@View(name = "sinClienteNiFactura",
-members=
-"anyo, numero, fecha;"
-+"detalles;"
-+"observaciones"
-		)
+@View(name="SinClienteNiFactura",
+    members=
+        "anyo, numero, fecha;"
+        + "detalles;"
+        + "observaciones"
+)
 
 public class Pedido extends DocumentoComercial {
-
-@ManyToOne	
-@ReferenceView("SinClienteNiPedidos")
-	Factura factura;
+	
+    @ManyToOne
+    @ReferenceView("SinClienteNiPedidos")
+    Factura factura;
 }

@@ -8,21 +8,19 @@ import org.openxava.annotations.*;
 
 import lombok.*;
 
-@Entity @Getter @Setter
+@Entity @Getter @Setter 
 @View(extendsView ="super.DEFAULT",
-members= "pedidos{pedidos}"
-        )
-@View(name="SinClienteNiPedidos",
-members=
-"anyo, numero, fecha;"
-+ "detalles;"
-+ "observaciones;"
+	  members="pedidos{pedidos}"
 )
-public class Factura extends DocumentoComercial{
+@View(name="SinClienteNiPedidos",
+    members=
+        "anyo, numero, fecha;"
+        + "detalles;"
+        + "observaciones"
+)
+public class Factura extends DocumentoComercial {
+	
     @OneToMany(mappedBy = "factura")
-	Collection<Pedido>pedidos;
-    
-    @ManyToOne
-    @ReferenceView("SinClienteNiPedidos")
-    Factura factura;
+    @CollectionView("SinClienteNiFactura")
+    Collection<Pedido> pedidos;
 }
