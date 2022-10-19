@@ -32,7 +32,6 @@ public BigDecimal getImporte() {
 	)
 	@Stereotype("DINERO")
 	BigDecimal precioPorUnidad;
-	//oneline
 }
 
 
