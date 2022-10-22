@@ -19,6 +19,9 @@ import lombok.*;
 @Getter
 @Setter
 @View(members = "anyo, numero, fecha," + "datos {" + "cliente;" + "detalles;" + "observaciones" + "}")
+
+
+
 abstract public class DocumentoComercial extends Identificable {
 
 	@DefaultValueCalculator(CurrentYearCalculator.class)
@@ -42,16 +45,16 @@ abstract public class DocumentoComercial extends Identificable {
 	@ElementCollection
 	@ListProperties("producto.numero, producto.descripcion, cantidad, precioPorUnidad, " + "importe+["
 			+ "documentoComercial.porcentajeIVA," + "documentoComercial.iva," + "documentoComercial.importeTotal" + "]")
+	
+	
 	Collection<Detalle> detalles;
-
-	@Stereotype("MEMO")
+	@Stereotype("MEMO")		
 	String observaciones;
-
+ 
 	@DefaultValueCalculator(CalculadorPorcentajeIVA.class)
 
 	@Digits(integer = 2, fraction = 0)
 	BigDecimal porcentajeIVA;
-
 	@ReadOnly
 	@Money
 	@Calculation("sum(detalles.importe) * porcentajeIVA / 100")
